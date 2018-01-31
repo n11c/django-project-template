@@ -84,7 +84,7 @@ This requires a little more work than with the default Django layout:
     $ mkdir src/{{project_name}}/apps/<app_name>
     $ ./manage.py startapp <app_name> src/{{project_name}}/apps/<app_name>
 
-And add `{{project_name}}.apps.<app_name>` to your `INSTALLED_APPS`.
+And add `<project_name>.apps.<app_name>` to the `INSTALLED_APPS` setting.
 
 ## Custom runner and Django management commands
 
