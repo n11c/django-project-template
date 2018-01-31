@@ -51,6 +51,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             if not self.creation_date:
                 self.creation_date = timezone.now()
 
+        self.clean_fields(exclude='password')
+
         super().save(*args, **kwargs)
 
     @property

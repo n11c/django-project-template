@@ -58,7 +58,10 @@ setup(
             'flake8==3.5.0',
             'pytest==3.4.0',
             'pytest-django==3.1.2',
-            'pytest-cov==2.5.1']
+            'pytest-cov==2.5.1',
+            'factory-boy==2.10.0',
+            'Faker==0.8.10',
+        ]
     },
     classifiers=[
         'Operating System :: OS Independent',

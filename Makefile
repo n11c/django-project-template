@@ -9,12 +9,12 @@ lint:
 
 test-python:
 	@echo "--> Running Python tests"
-	sh tests/runtests.sh
+	pytest . || exit 1
 	@echo ""
 
 coverage:
 	@echo "--> Running Python tests coverage"
-	sh tests/runtests.sh --cov-report html --cov-report term:skip-covered --cov={{project_name}}
+	pytest . --cov-report html --cov-report term:skip-covered --cov={{project_name}} || exit 1
 	@echo ""
 
 test: lint test-python
@@ -37,4 +37,4 @@ clear_dev_data:
 
 reset_dev_data: clear_dev_data load_dev_data
 
-.PHONY: lint test test-python locales load_dev_data clear_dev_data reset_dev_data
+.PHONY: lint test-python coverage test locales load_dev_data clear_dev_data reset_dev_data
