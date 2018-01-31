@@ -81,8 +81,8 @@ These settings(and their default values) are only used on staging and production
 
 This requires a little more work than with the default Django layout:
 
-    $ mkdir src/{{project_name}}/apps/<app_name>
-    $ <project_name> django startapp <App_name> src/{{project_name}}/apps/<app_name>
+    $ mkdir src/<project_name>/apps/<app_name>
+    $ <project_name> django startapp <App_name> src/<project_name>/apps/<app_name>
 
 *Note: "title-case" your app name as shown above, otherwise Django returns a cryptic conflict error*
 
@@ -131,6 +131,16 @@ This creates 2 users with the following credentials:
 
 - Superuser: **admin@example.com / admin**
 - Unprivileged user: **admin@example.com / user**
+
+## Creating a new app
+
+    $ mkdir src/{{project_name}}/apps/<app_name>
+    $ {{project_name}} django startapp <App_name> src/{{project_name}}/apps/<app_name>
+
+*Note: "title-case" your app name as shown above, otherwise Django returns a cryptic conflict error*
+
+And add `{{project_name}}.apps.<app_name>` to the `INSTALLED_APPS` setting.
+
 
 ## Writing and running tests
 
