@@ -1,0 +1,24 @@
+- model: users.user
+  pk: 1
+  fields:
+    email: admin@example.com
+    password: pbkdf2_sha256$100000$WAKCcXwaIAVv$/DxDYGK3+l0dIeeVWj+bllTGT927nfnJxl8zNWIiZT8=
+    creation_date: '2018-01-01 00:00:00.000000+00:00'
+    update_date: '2018-01-01 00:00:00.000000+00:00'
+    first_name: 'Admin'
+    last_name: 'Dev'
+    is_superuser: true
+    is_admin: true
+    is_active: true
+- model: users.user
+  pk: 2
+  fields:
+    email: user@example.com
+    password: pbkdf2_sha256$100000$pGI3UbeCOkub$mhX6VsigbVpIJCPNiifaqqEjPnZh0D9qxq+aOpmXgf8=
+    creation_date: '2018-01-01 00:00:00.000000+00:00'
+    update_date: '2018-01-01 00:00:00.000000+00:00'
+    first_name: 'User'
+    last_name: 'Dev'
+    is_superuser: false
+    is_admin: false
+    is_active: true

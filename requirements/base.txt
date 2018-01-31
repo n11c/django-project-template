@@ -1,5 +1,0 @@
-Django
-dj-database-url
-django-configurations
-django-extensions
-whitenoise

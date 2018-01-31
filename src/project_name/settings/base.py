@@ -13,16 +13,17 @@ import sys
 
 from configurations import Configuration, values
 
+
 class BaseSettings(Configuration):
 
     # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-    ROOT_DIR = os.path.dirname(BASE_DIR)
+    ROOT_DIR = os.path.dirname(os.path.dirname(BASE_DIR))
 
     # SECURITY WARNING: keep the secret key used in production secret!
-    # Generate with: ./manage.py generate_secret_key
-    SECRET_KEY = values.SecretValue()
+    # To generate it manually:
+    # python -c 'import random; print "".join([random.choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)") for i in range(50)])'
+    SECRET_KEY = 'secret-key'
 
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(False)
@@ -47,16 +48,15 @@ class BaseSettings(Configuration):
         '{{ project_name }}.apps.users',
     ]
 
-    MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
 
     ROOT_URLCONF = '{{ project_name }}.core.urls'
@@ -80,11 +80,10 @@ class BaseSettings(Configuration):
 
     WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
-
     # Database
     # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
     # URL syntax: https://github.com/kennethreitz/dj-database-url#url-schema
-    DATABASES = values.DatabaseURLValue('sqlite:///{}'.format(os.path.join(ROOT_DIR, 'var', 'db.sqlite3')))
+    DATABASES = values.DatabaseURLValue('postgresql:///user:pass@host:5432/dbname')
 
     # Password validation
     # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#auth-password-validators
@@ -103,7 +102,6 @@ class BaseSettings(Configuration):
         },
     ]
 
-
     # Internationalization
     # https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
     LANGUAGE_CODE = values.Value('en-us')
@@ -116,12 +114,10 @@ class BaseSettings(Configuration):
 
     USE_TZ = True
 
-
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'var', 'static')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
     AUTH_USER_MODEL = 'users.User'

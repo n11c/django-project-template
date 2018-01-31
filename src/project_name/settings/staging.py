@@ -1,7 +1,11 @@
 from .base import BaseSettings
 from configurations import values
 
+
 class Staging(BaseSettings):
+
+    SECRET_KEY = values.SecretValue()
+    
     # Security
     SESSION_COOKIE_SECURE = values.BooleanValue(True)
     SECURE_BROWSER_XSS_FILTER = values.BooleanValue(True)
